@@ -8,13 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.kordamp.bootstrapfx.BootstrapFX;
 
 public class App extends Application {
     public static void main( String[] args ) {
         System.out.println( "Hello World!" );
         launch(args);
     }
-
     @Override
     public void start(Stage stage) throws Exception {
         Label lbn1=new Label("Numero 1");
@@ -25,6 +25,8 @@ public class App extends Application {
         Button btnResta=new Button("Resta");
         Label result=new Label("Resultado:");
         Label valorResult=new Label("0");
+        btnSuma.getStyleClass().setAll("btn", "btn-primary");
+        btnResta.getStyleClass().setAll("btn", "btn-success");
         btnSuma.setOnAction(e->{
             double resul=Double.parseDouble(txtNum1.getText())+Double.parseDouble(txtNum2.getText());
             valorResult.setText(String.valueOf(resul));
@@ -38,7 +40,16 @@ public class App extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(15));
         grid.add(lbn1,0,0);
+        grid.add(lbn2,1,0);
+        grid.add(txtNum1, 0,1);
+        grid.add(txtNum2, 1,1);
+        grid.add(btnSuma, 0,2);
+        grid.add(btnResta, 1, 2);
+        grid.add(result, 0,3);
+        grid.add(valorResult, 1,3);
         Scene scene=new Scene(grid, 480,680);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        stage.setTitle("Calc Basic");
         stage.setScene(scene);
         stage.show();
     }

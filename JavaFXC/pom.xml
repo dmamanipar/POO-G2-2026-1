@@ -111,10 +111,7 @@
           <list>.*\.gif$</list>
           </resourcesList> -->
           <!-- Clases que necesitan reflexión (FXML las usa) -->
-          <reflectionList>
-            <list>pe.edu.upeu.App</list>
-            <list>pe.edu.upeu.controller.MainController</list>
-          </reflectionList>
+
           <!-- Verbose para ver el progreso de la compilación -->
           <verbose>false</verbose>
         </configuration>
