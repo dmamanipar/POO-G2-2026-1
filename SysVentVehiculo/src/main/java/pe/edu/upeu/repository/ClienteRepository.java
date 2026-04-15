@@ -32,4 +32,9 @@ public class ClienteRepository {
         clientes.remove(index);
     }
 
+    public void cargarDatos(){
+        clientes.add(new Cliente("43631817", "Raul Gomez", "951782511", "raul@gmail.com"));
+        clientes.add(new Cliente("43631818", "Pedro Apaza", "951782512", "pedrito@gmail.com"));
+    }
+
 }

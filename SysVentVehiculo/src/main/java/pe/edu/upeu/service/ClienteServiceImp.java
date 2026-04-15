@@ -2,29 +2,39 @@ package pe.edu.upeu.service;
 
 import pe.edu.upeu.model.Cliente;
 import pe.edu.upeu.repository.ClienteRepository;
-
 import java.util.List;
 
-public class ClienteServiceImp extends ClienteRepository implements ClienteService{
+public class ClienteServiceImp implements ClienteService{
 
+    ClienteRepository cr=ClienteRepository.getInstace();
+
+    private static ClienteService instance=new ClienteServiceImp();
+
+    public ClienteService getInstance(){
+        if(instance==null){
+            instance=new ClienteServiceImp();
+        }
+        return instance;
+    }
     @Override
     public void save(Cliente c) {
-        super.save(c);
+        cr.save(c);
     }
 
     @Override
     public List<Cliente> finAll() {
-        return  super.finAll();
+        if (cr.finAll().isEmpty()){
+            cr.cargarDatos();
+        }
+        return  cr.finAll();
     }
-
     @Override
     public void update(Cliente c, int index) {
-        super.update(c, index);
+        cr.update(c, index);
     }
 
     @Override
     public void delete(int index) {
-        super.delete(index);
+        cr.delete(index);
     }
-
 }
