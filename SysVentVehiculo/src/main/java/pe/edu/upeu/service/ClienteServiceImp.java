@@ -10,7 +10,7 @@ public class ClienteServiceImp implements ClienteService{
 
     private static ClienteService instance=new ClienteServiceImp();
 
-    public ClienteService getInstance(){
+    public static ClienteService getInstance(){
         if(instance==null){
             instance=new ClienteServiceImp();
         }
