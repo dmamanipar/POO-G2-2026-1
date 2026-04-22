@@ -32,14 +32,38 @@ public class ClienteController {
             if(index!=-1){
                 cs.delete(index);
                 listar();
-                limiparForm();
+                limpiarForm();
             }
         });
         btnLimpiar.setOnAction(e->{
-            limiparForm();
+            limpiarForm();
         });
+
+        btnGuardar.setOnAction(e->{
+            guardarCliente();
+        });
+
+
     }
-    void limiparForm(){
+
+    void guardarCliente(){
+        Cliente c=new Cliente();
+        c.setIdDni(txtDni.getText());
+        c.setNombre(txtNombre.getText());
+        c.setTelefono(txtTelefono.getText());
+        c.setEmail(txtEmail.getText());
+        if(index==-1){
+            cs.save(c);
+            limpiarForm();
+        }else{
+            cs.update(c, index);
+            limpiarForm();
+            index=-1;
+        }
+        listar();
+    }
+
+    void limpiarForm(){
         txtDni.setText("");
         txtNombre.setText("");
         txtTelefono.setText("");
