@@ -28,23 +28,34 @@ public class ClienteController {
         definirColumnas();
         listar();
         agregarEventoSeleccion();
+        desacActBotton(true);
         btnEliminar.setOnAction(e->{
             if(index!=-1){
                 cs.delete(index);
                 listar();
                 limpiarForm();
+                desacActBotton(true);
             }
         });
         btnLimpiar.setOnAction(e->{
             limpiarForm();
         });
-
         btnGuardar.setOnAction(e->{
             guardarCliente();
         });
-
-
+        btnActualizar.setOnAction(e->{
+            if (index!=-1){
+                guardarCliente();
+                desacActBotton(true);
+            }
+        });
     }
+
+    void desacActBotton(boolean valor){
+        btnActualizar.setDisable(valor);
+        btnEliminar.setDisable(valor);
+    }
+
 
     void guardarCliente(){
         Cliente c=new Cliente();
@@ -68,6 +79,10 @@ public class ClienteController {
         txtNombre.setText("");
         txtTelefono.setText("");
         txtEmail.setText("");
+        index=-1;
+        regClienteTabla.getSelectionModel().clearSelection();
+        desacActBotton(true);
+        btnGuardar.setDisable(false);
     }
 
     public void definirColumnas(){
@@ -100,6 +115,8 @@ public class ClienteController {
                        txtNombre.setText(newValue.getNombre());
                        txtTelefono.setText(newValue.getTelefono());
                        txtEmail.setText(newValue.getEmail());
+                       desacActBotton(false);
+                       btnGuardar.setDisable(true);
                    }
                 });
     }

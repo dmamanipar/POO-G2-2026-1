@@ -24,7 +24,7 @@ public class ClienteServiceImp implements ClienteService{
     @Override
     public List<Cliente> finAll() {
         if (cr.finAll().isEmpty()){
-            cr.cargarDatos();
+           cr.cargarDatos();
         }
         return  cr.finAll();
     }
