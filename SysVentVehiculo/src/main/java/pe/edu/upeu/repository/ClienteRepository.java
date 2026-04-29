@@ -25,7 +25,17 @@ public class ClienteRepository {
     List<Cliente> clientes;
     //Create
     public void save(Cliente cliente){
-        clientes.add(cliente);
+        String sql="INSERT INTO cliente (idDni, nombre, telefono, email) VALUES(?, ?, ?, ?);";
+        try {
+            ps=con.prepareStatement(sql);
+            ps.setString(1, cliente.getIdDni());
+            ps.setString(2, cliente.getNombre());
+            ps.setString(3, cliente.getTelefono());
+            ps.setString(4, cliente.getEmail());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     //Report
     public List<Cliente> finAll(){
@@ -37,6 +47,8 @@ public class ClienteRepository {
                 Cliente c=new Cliente();
                 c.setIdDni(rs.getString("idDni"));
                 c.setNombre(rs.getString("nombre"));
+                c.setTelefono(rs.getString("telefono"));
+                c.setEmail(rs.getString("email"));
                 clientes.add(c);
             }
         } catch (Exception e) {
@@ -45,17 +57,30 @@ public class ClienteRepository {
         return clientes;
     }
     //Update
-    public void  update(Cliente c, int index){
-        clientes.set(index, c);
+    public void  update(Cliente c, String dni){
+        String sql="UPDATE cliente SET nombre=?, telefono=?, email=? WHERE idDni=?;";
+        try {
+            ps=con.prepareStatement(sql);
+            ps.setString(1, c.getNombre());
+            ps.setString(2, c.getTelefono());
+            ps.setString(3, c.getEmail());
+            ps.setString(4, c.getIdDni());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     //Delete
-    public void delete(int index){
-        clientes.remove(index);
+    public void delete(String dni){
+        String sql="DELETE FROM cliente WHERE idDni=?";
+        try {
+            ps= con.prepareStatement(sql);
+            ps.setString(1, dni);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void cargarDatos(){
-        clientes.add(new Cliente("43631817", "Raul Gomez", "951782511", "raul@gmail.com"));
-        clientes.add(new Cliente("43631818", "Pedro Apaza", "951782512", "pedrito@gmail.com"));
-    }
 
 }

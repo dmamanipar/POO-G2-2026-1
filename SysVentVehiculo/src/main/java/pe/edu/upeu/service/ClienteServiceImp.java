@@ -29,12 +29,12 @@ public class ClienteServiceImp implements ClienteService{
         return  cr.finAll();
     }
     @Override
-    public void update(Cliente c, int index) {
-        cr.update(c, index);
+    public void update(Cliente c, String dni) {
+        cr.update(c, dni);
     }
 
     @Override
-    public void delete(int index) {
-        cr.delete(index);
+    public void delete(String dni) {
+        cr.delete(dni);
     }
 }

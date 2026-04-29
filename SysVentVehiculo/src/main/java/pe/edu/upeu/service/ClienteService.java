@@ -7,7 +7,7 @@ import java.util.List;
 public interface ClienteService {
     void save(Cliente c);
     List<Cliente> finAll();
-    void update(Cliente c, int index);
-    void delete(int index);
+    void update(Cliente c, String dni);
+    void delete(String dni);
 
 }
