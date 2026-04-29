@@ -5,6 +5,7 @@ module pe.edu.upeu {
     requires javafx.graphics;
     requires static lombok;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens pe.edu.upeu.controller to javafx.fxml;
 

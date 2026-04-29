@@ -1,12 +1,20 @@
 package pe.edu.upeu.repository;
 
+import pe.edu.upeu.config.ConexionSQLite;
 import pe.edu.upeu.model.Cliente;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteRepository {
     public static ClienteRepository instace=new ClienteRepository();
+
+    public Connection con=new ConexionSQLite().conectar();
+    PreparedStatement ps;
+    ResultSet rs;
 
     public static ClienteRepository getInstace(){
         if(instace==null){
@@ -14,13 +22,26 @@ public class ClienteRepository {
         }
         return instace;
     }
-    List<Cliente> clientes=new ArrayList<>();
+    List<Cliente> clientes;
     //Create
     public void save(Cliente cliente){
         clientes.add(cliente);
     }
     //Report
     public List<Cliente> finAll(){
+        clientes=new ArrayList<>();
+        try {
+            ps=con.prepareStatement("select * from cliente");
+            rs=ps.executeQuery();
+            while (rs.next()){
+                Cliente c=new Cliente();
+                c.setIdDni(rs.getString("idDni"));
+                c.setNombre(rs.getString("nombre"));
+                clientes.add(c);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return clientes;
     }
     //Update
