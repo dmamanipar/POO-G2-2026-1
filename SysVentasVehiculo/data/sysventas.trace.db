@@ -40,3 +40,7 @@ java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supporte
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
 	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-05-11 08:00:22.275918-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "CLIENTE" ya existe
+Table "CLIENTE" already exists; SQL statement:
+CREATE TABLE `cliente` (`dni` VARCHAR(255) NOT NULL,`nombre` VARCHAR(255) NOT NULL,`telefono` VARCHAR(255) NOT NULL,`email` VARCHAR(255) NOT NULL, PRIMARY KEY(`dni`)) [42101-232]
