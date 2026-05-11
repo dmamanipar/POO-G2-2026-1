@@ -1,17 +1,20 @@
 package pe.edu.upeu.controller;
 
 import jakarta.inject.Inject;
+import jakarta.validation.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import pe.edu.upeu.component.ToltipCustom;
 import pe.edu.upeu.model.Cliente;
 import pe.edu.upeu.service.ClienteService;
 import pe.edu.upeu.service.ClienteServiceImp;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class ClienteController {
     @FXML
@@ -34,6 +37,9 @@ public class ClienteController {
         listar();
         agregarEventoSeleccion();
         desacActBotton(true);
+
+        initValidation();
+
         btnEliminar.setOnAction(e->{
             if(!dni.equals("")){
                 cs.delete(dni);
@@ -46,28 +52,77 @@ public class ClienteController {
             limpiarForm();
         });
         btnGuardar.setOnAction(e->{
-            guardarCliente();
+            guardarCliente(false);
         });
         btnActualizar.setOnAction(e->{
             if (!dni.equals("")){
-                guardarCliente();
+                guardarCliente(true);
                 desacActBotton(true);
             }
         });
+    }
+
+    private Validator validator;
+    ToltipCustom ttc=new ToltipCustom();
+    private void initValidation(){
+        Configuration<?> config= Validation.byDefaultProvider().configure();
+        config.constraintValidatorFactory(new ConstraintValidatorFactory() {
+            @Override
+            public <T extends ConstraintValidator<?, ?>> T getInstance(Class<T> key) {
+                try {
+                    return  key.getDeclaredConstructor().newInstance();
+                } catch (Exception e) {
+                    throw new RuntimeException("No se puede instanciar:"+ key, e);
+                }
+            }
+            @Override
+            public void releaseInstance(ConstraintValidator<?, ?> instance) {
+            }
+        });
+        validator=config.buildValidatorFactory().getValidator();
+    }
+
+    private void limpiarCampo(TextField campo){
+        campo.setStyle(ttc.ESTILO_NORMAL);
+        Tooltip.install(campo,null);
+    }
+    private boolean validar(Cliente c, boolean esActualizar){
+        limpiarForm();
+        Set<ConstraintViolation<Cliente>> violations=validator.validate(c);
+        Map<String, StringBuilder> mensajesporCampo=new HashMap<>();
+        for(ConstraintViolation<Cliente> v: violations){
+            String campo=v.getPropertyPath().toString();
+            String anotation=v.getConstraintDescriptor().getAnnotation()
+                    .annotationType().getSimpleName();
+            if(esActualizar) continue;
+            mensajesporCampo.computeIfAbsent(campo, k->new StringBuilder())
+                    .append(v.getMessage()).append(" ");
+        }
+        if(mensajesporCampo.isEmpty()) return true;
+        mensajesporCampo.forEach((campo, msg)->{
+            String texto=msg.toString().trim();
+            switch (campo){
+                case "idDni" ->ttc.marcarError(txtDni, texto);
+                case "nombre" ->ttc.marcarError(txtNombre, texto);
+                case "email" ->ttc.marcarError(txtEmail, texto);
+            }
+        });
+        return false;
     }
 
     void desacActBotton(boolean valor){
         btnActualizar.setDisable(valor);
         btnEliminar.setDisable(valor);
     }
-
-
-    void guardarCliente(){
+    boolean guardarCliente(boolean esActualizar){
         Cliente c=new Cliente();
         c.setIdDni(txtDni.getText());
         c.setNombre(txtNombre.getText());
         c.setTelefono(txtTelefono.getText());
         c.setEmail(txtEmail.getText());
+
+        if(!validar(c, esActualizar)) return false;
+
         if(dni.equals("")){
             cs.save(c);
             limpiarForm();
@@ -78,13 +133,25 @@ public class ClienteController {
             dni="";
         }
         listar();
+        return true;
     }
 
-    void limpiarForm(){
+    private void limpiar(){
         txtDni.setText("");
         txtNombre.setText("");
         txtTelefono.setText("");
         txtEmail.setText("");
+        dni="";
+        regClienteTabla.getSelectionModel().clearSelection();
+        desacActBotton(true);
+        btnGuardar.setDisable(false);
+        limpiarForm();
+    }
+    void limpiarForm(){
+        limpiarCampo(txtDni);
+        limpiarCampo(txtNombre);
+        limpiarCampo(txtTelefono);
+        limpiarCampo(txtEmail);
         dni="";
         regClienteTabla.getSelectionModel().clearSelection();
         desacActBotton(true);

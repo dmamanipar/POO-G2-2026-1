@@ -1,24 +1,28 @@
 package pe.edu.upeu.model;
-
-import io.micronaut.data.annotation.Id;
-import io.micronaut.data.annotation.MappedEntity;
-import io.micronaut.data.annotation.MappedProperty;
-import io.micronaut.data.model.DataType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
-
-@MappedEntity(value = "cliente")
+@Entity(name = "cliente")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 public class Cliente {
     @Id
-    @MappedProperty(type = DataType.STRING, value = "dni")
+    @Column(name = "dni")
+    @NotBlank(message = "El dni es obligatorio")
+    @Size(min = 8, max = 8, message = "El dni debe tener como minimo y maximo 8 digitos")
     private String idDni;
-    @MappedProperty(type = DataType.STRING, value = "nombre")
+
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
-    @MappedProperty(type = DataType.STRING, value = "telefono")
+
     private String telefono;
-    @MappedProperty(type = DataType.STRING, value = "email")
+
+    @Email(message = "El email no tiene un formato valido")
     private String email;
 }
