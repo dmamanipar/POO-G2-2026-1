@@ -104,6 +104,7 @@ public class ClienteController {
             switch (campo){
                 case "idDni" ->ttc.marcarError(txtDni, texto);
                 case "nombre" ->ttc.marcarError(txtNombre, texto);
+                case "telefono" ->ttc.marcarError(txtTelefono, texto);
                 case "email" ->ttc.marcarError(txtEmail, texto);
             }
         });
@@ -115,6 +116,7 @@ public class ClienteController {
         btnEliminar.setDisable(valor);
     }
     boolean guardarCliente(boolean esActualizar){
+
         Cliente c=new Cliente();
         c.setIdDni(txtDni.getText());
         c.setNombre(txtNombre.getText());
@@ -122,15 +124,17 @@ public class ClienteController {
         c.setEmail(txtEmail.getText());
 
         if(!validar(c, esActualizar)) return false;
-
-        if(dni.equals("")){
+        System.out.println(dni);
+        if(dni.isEmpty()){
             cs.save(c);
             limpiarForm();
+            limpiar();
         }else{
             c.setIdDni(dni);
             cs.update(c);
             limpiarForm();
             dni="";
+            limpiar();
         }
         listar();
         return true;
@@ -152,8 +156,8 @@ public class ClienteController {
         limpiarCampo(txtNombre);
         limpiarCampo(txtTelefono);
         limpiarCampo(txtEmail);
-        dni="";
-        regClienteTabla.getSelectionModel().clearSelection();
+        //dni="";
+        //regClienteTabla.getSelectionModel().clearSelection();
         desacActBotton(true);
         btnGuardar.setDisable(false);
     }

@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 @Entity(name = "cliente")
@@ -21,8 +22,11 @@ public class Cliente {
     @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
+    @Pattern(regexp = "^9\\d{8}$", message = "el numero de telefono no tiene el formato valido")
+    @NotBlank(message = "El nombre es obligatorio")
     private String telefono;
 
+    @NotBlank(message = "El nombre es obligatorio")
     @Email(message = "El email no tiene un formato valido")
     private String email;
 }

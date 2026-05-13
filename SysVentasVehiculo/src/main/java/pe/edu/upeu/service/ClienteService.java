@@ -9,4 +9,5 @@ public interface ClienteService {
     List<Cliente> findAll();
     List<Cliente> buscar(String dato);
     Optional<Cliente> findById(String id);
+    boolean existById(String id);
 }

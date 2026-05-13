@@ -37,4 +37,9 @@ public class ClienteServiceImp implements ClienteService{
     public Optional<Cliente> findById(String id) {
         return repo.findById(id);
     }
+
+    @Override
+    public boolean existById(String id) {
+        return repo.existsById(id);
+    }
 }
