@@ -1,4 +1,5 @@
 package pe.edu.upeu.service;
+import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import jakarta.transaction.Transactional;
 import pe.edu.upeu.model.Cliente;
@@ -9,7 +10,8 @@ import java.util.Optional;
 @Transactional
 @Singleton
 public class ClienteServiceImp implements ClienteService{
-    private final ClienteRepository repo;
+
+    private  final ClienteRepository repo;
     public ClienteServiceImp(ClienteRepository repo){
         this.repo=repo;
     }

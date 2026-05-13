@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import pe.edu.upeu.component.validation.DniUnic;
+
 @Entity(name = "cliente")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,6 +16,7 @@ import lombok.*;
 @Getter
 public class Cliente {
     @Id
+    @DniUnic(message = "El DNI ya esta registrado")
     @Column(name = "dni")
     @NotBlank(message = "El dni es obligatorio")
     @Size(min = 8, max = 8, message = "El dni debe tener como minimo y maximo 8 digitos")

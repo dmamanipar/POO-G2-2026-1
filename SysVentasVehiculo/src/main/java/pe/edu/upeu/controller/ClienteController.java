@@ -1,5 +1,6 @@
 package pe.edu.upeu.controller;
 
+import io.micronaut.http.annotation.Controller;
 import jakarta.inject.Inject;
 import jakarta.validation.*;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import pe.edu.upeu.component.ToltipCustom;
+import pe.edu.upeu.component.validation.DniUnicoValidator;
 import pe.edu.upeu.model.Cliente;
 import pe.edu.upeu.service.ClienteService;
 import pe.edu.upeu.service.ClienteServiceImp;
@@ -15,6 +17,7 @@ import pe.edu.upeu.service.ClienteServiceImp;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
 
 public class ClienteController {
     @FXML
@@ -64,11 +67,18 @@ public class ClienteController {
 
     private Validator validator;
     ToltipCustom ttc=new ToltipCustom();
+
     private void initValidation(){
         Configuration<?> config= Validation.byDefaultProvider().configure();
         config.constraintValidatorFactory(new ConstraintValidatorFactory() {
             @Override
             public <T extends ConstraintValidator<?, ?>> T getInstance(Class<T> key) {
+                if(key== DniUnicoValidator.class){
+                    DniUnicoValidator v=new DniUnicoValidator();
+                    v.initialize(cs);
+                    return key.cast(v);
+                }
+
                 try {
                     return  key.getDeclaredConstructor().newInstance();
                 } catch (Exception e) {
