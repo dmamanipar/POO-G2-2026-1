@@ -5,25 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="540f26c5-36ff-4e2f-aea0-cc1e50326032" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/controller/VentaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/repository/ClienteRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/repository/PerfilRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/repository/VentCarritoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/repository/VentaDetalleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/repository/VentaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/service/IClienteService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/service/IVentaCarritoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/service/IVentaDetalleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/service/IVentaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/service/impl/ClienteServiceImp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/service/impl/VentaCarritoServiceImp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/service/impl/VentaDetalleServiceImp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/service/impl/VentaServiceImp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/main_venta.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/config/AppContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/config/AppContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/model/Venta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/model/Venta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/repository/UsuarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/sysventas.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/sysventas.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/config/DatabaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/config/DatabaseConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/controller/ProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/controller/ProductoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/controller/VentaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/controller/VentaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/model/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/repository/ClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/repository/ClienteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/service/impl/ClienteServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/upeu/sysventas/service/impl/ClienteServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,9 +24,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="3FAqmEpKtf7VNg3GW3zkgpKoaRh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -47,9 +38,11 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "dev-s10Venta",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/DELL/Downloads/DESARROLLO4/POO-G2-2026-1/SysVentas/src/main/resources/view",
+    "last_opened_file_path": "D:/POO/DESARROLLO/POO-G2-2026-1/SysVentas",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -93,8 +86,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
-        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-IU-252.25557.131" />
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.25134.95" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.25134.95" />
       </set>
     </attachedChunks>
   </component>
