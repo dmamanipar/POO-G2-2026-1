@@ -7,13 +7,17 @@ import com.github.anastaciocintra.escpos.barcode.QRCode;
 import com.github.anastaciocintra.output.PrinterOutputStream;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import pe.edu.upeu.sysventas.components.*;
 import pe.edu.upeu.sysventas.dto.ModeloDataAutocomplet;
 import pe.edu.upeu.sysventas.dto.PersonaDto;
 import pe.edu.upeu.sysventas.dto.SessionManager;
+import pe.edu.upeu.sysventas.dto.comprobante.Comprobante;
 import pe.edu.upeu.sysventas.enums.TipoDocumento;
 import pe.edu.upeu.sysventas.exception.ModelNotFoundException;
 import pe.edu.upeu.sysventas.model.Cliente;
@@ -330,7 +334,7 @@ public class VentaController {
             daoC.deleteCarAll(dniRuc.getText());
             listar();
             idX.setDetalleVenta(vdList);
-            /*Comprobante comprobante = daoV.generarComprobante(idX);
+            Comprobante comprobante = daoV.generarComprobante(idX);
             try {
                 if(comprobante!=null && dd.size()>0) {
                     mostrarVisorComprobante(comprobante);
@@ -348,7 +352,7 @@ public class VentaController {
                 }
             }catch (Exception e){
                 System.out.println("VER:"+e.getMessage());
-            }*/
+            }
         }else{
             Stage stage = StageManager.getPrimaryStage();
             double with=stage.getMaxWidth()/2;
@@ -357,7 +361,7 @@ public class VentaController {
     }
 
 
-    /*public  void mostrarVisorComprobante(Comprobante boleta) {
+    public  void mostrarVisorComprobante(Comprobante boleta) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_comprobante.fxml"));
             Parent visorRoot = loader.load();
@@ -389,7 +393,7 @@ public class VentaController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    }*/
+    }
 
 
     public void print(Long idv){
