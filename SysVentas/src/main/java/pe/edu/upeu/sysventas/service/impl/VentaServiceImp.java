@@ -58,7 +58,7 @@ public class VentaServiceImp extends CrudGenericoServiceImp<Venta, Long>
 
         b.setTipoDocumento("BOLETA DE VENTA ELECTRÓNICA");
         b.setSerie("B001");
-        b.setNumero("00000042");
+        b.setNumero(venta.getNumDoc());
         b.setFechaEmision(venta.getFechaGener().toString());
         b.setMoneda("PEN");
 

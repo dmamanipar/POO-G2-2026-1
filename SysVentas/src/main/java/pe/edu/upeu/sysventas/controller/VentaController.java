@@ -316,6 +316,7 @@ public class VentaController {
                     .numDoc("00" )
                     .build();
             Venta idX = daoV.save(to);
+            System.out.println("dato:"+idX.getNumDoc());
 
             List<VentaDetalle> vdList = new ArrayList<>();
             if (idX.getIdVenta() != 0) {

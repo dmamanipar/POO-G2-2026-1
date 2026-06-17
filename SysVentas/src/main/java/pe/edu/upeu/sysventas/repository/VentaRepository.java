@@ -32,12 +32,22 @@ public class VentaRepository extends AbstractJpaRepository<Venta, Long> {
     @Override
     protected Venta insert(Connection conn, Venta e) throws SQLException {
         long id = executeInsertGetKey(conn,
-                "INSERT INTO upeu_venta(preciobase,igv,preciototal,dniruc,id_usuario,num_doc,fecha_gener,serie,tipo_doc) VALUES(?,?,?,?,?,?,?,?,?)",
+                "INSERT INTO upeu_venta(preciobase,igv,preciototal,dniruc,id_usuario,num_doc,fecha_gener,serie,tipo_doc) VALUES(?,?,?,?,?,(SELECT LPAD(CAST(max(CONVERT(num_doc, INT))+1 AS VARCHAR), 6, '0') AS codigo FROM UPEU_VENTA),?,?,?)",
                 e.getPreciobase(), e.getIgv(), e.getPreciototal(),
                 e.getDniruc().getDniruc(), e.getIdUsuario().getIdUsuario(),
-                e.getNumDoc(), Timestamp.valueOf(e.getFechaGener()),
+                Timestamp.valueOf(e.getFechaGener()),
                 e.getSerie(), e.getTipoDoc());
         e.setIdVenta(id);
+
+        Optional<Venta> dd=executeQueryOne("select * from upeu_venta where id_venta=?", id);
+
+        dd.ifPresent(v -> {
+            e.setNumDoc(v.getNumDoc());
+            System.out.println("Pruabas:"+v.getNumDoc());
+        });
+
+
+
         return e;
     }
 
