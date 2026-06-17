@@ -72,8 +72,10 @@ public class ProductoController {
 
         cbxMarca.getItems().addAll(ms.listarCombobox());
         new ComboBoxAutoComplete<>(cbxMarca);
+
         cbxCategoria.getItems().addAll(cs.listarCombobox());
         new ComboBoxAutoComplete<>(cbxCategoria);
+
         cbxUnidMedida.getItems().addAll(ums.listarCombobox());
         new ComboBoxAutoComplete<>(cbxUnidMedida);
 

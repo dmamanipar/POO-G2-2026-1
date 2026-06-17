@@ -12,4 +12,5 @@ public class Cliente {
     private String nombres;
     private TipoDocumento tipoDocumento;
     private String repLegal;
+    private String direccion;
 }
